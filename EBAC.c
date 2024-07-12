@@ -38,7 +38,7 @@ int registro() 									//Função responsável por cadastrar os usuarios no sistem
 	fclose(file);								//fecha o arquivo
 	
 	printf("Digite o sobrenome a ser cadastrado: ");//coleta informação do usuário para o sistema
-	scanf("%39s",sobrenome);						//%s refere-se a string
+	scanf("%39s",sobrenome);					//%s refere-se a string
 	
 	file = fopen(arquivo, "a");					//acessa o arquivo
 	fprintf(file,sobrenome);					//atualiza o arquivo com dados adicionais
@@ -49,7 +49,7 @@ int registro() 									//Função responsável por cadastrar os usuarios no sistem
 	fclose(file);								//fecha o arquivo
 	
 	printf("Digite o cargo a ser cadastrado: ");//coleta informação do usuário para o sistema
-	scanf("%39s",cargo);							//%s refere-se a string
+	scanf("%39s",cargo);						//%s refere-se a string
 	
 	file = fopen(arquivo, "a");					//acessa o arquivo
 	fprintf(file,cargo);						//atualiza o arquivo com dados adicionais
@@ -125,7 +125,8 @@ int main()										//Função principal
 		printf("Escolha a opção desejada do menu:\n\n");
 		printf("\t1 - Registrar nomes\n");
 		printf("\t2 - Consultar nomes\n");
-		printf("\t3 - Excluir nomes\n");
+		printf("\t3 - Excluir nomes\n\n");
+		printf("\t4 - Sair do sistema\n\n");
 		printf("\n\n Opção:  "); 				//fim do menu
 	
 		scanf("%d", &opcao); 					//armazenando a escolha do usuario
@@ -144,6 +145,11 @@ int main()										//Função principal
 			
 			case 3:
 	 		deletar();
+			break;
+			
+			case 4:
+			printf("\nObrigado por utilizar o sistema!\n");//mensagem ao sair do sistema
+			return 0;
 			break;
 			
 			default:
