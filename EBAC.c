@@ -1,19 +1,19 @@
 #include <stdio.h> 								//biblioteca de comunicação com o usuário
 #include <stdlib.h>								//biblioteca de alocação de espaço em memória
 #include <locale.h> 							//biblioteca de alocações de texto por região
+#include <string.h>								//biblioteca responsável por cuidar das strings
 
 int registro() 									//Função responsável por cadastrar os usuarios no sistema
 {
-	setlocale(LC_ALL, "portuguese"); 			//Definindo linguagem
-												//inicio criação de variáveis/strings
-	char arquivo[40];
+	char arquivo[40];							//inicio criação de variáveis/strings
 	char cpf[40];
 	char nome[40];
 	char sobrenome[40];
 	char cargo[40];
 	
+	setlocale(LC_ALL, "portuguese"); 			//Definindo linguagem
 	printf("Digite o CPF a ser cadastrado: ");  //coleta informação do usuário para o sistema
-	scanf("%39s", cpf); 							//%s refere-se a string
+	scanf("%39s", cpf); 						//%s refere-se a string
 	
 	strcpy(arquivo, cpf); 						//Responsável por copiar os valores das strings
 	
@@ -80,8 +80,8 @@ int consulta()									//Função responsável por consultar dados de usuarios no s
 	
 	while(fgets(conteudo, 200, file) != NULL)	//Definindo para exibir ao usuário os dados encontrados
 	{
-		printf("\nEssas são as informações do usuário:");//mensagem exibida ao usuário
-		printf("\n%199s", conteudo);			//dados buscados pelo usuario sendo exibido
+		printf("\nEssas são as informações do usuário:\n");//mensagem exibida ao usuário
+		printf("\t%199s", conteudo);			//dados buscados pelo usuario sendo exibido
 		printf("\n\n");							//meramente estético
 	}
 
@@ -113,49 +113,64 @@ int main()										//Função principal
 {
 	int opcao=0; 								//definindo variável
 	int laco=1;
+	char senhadigitada[10]="a";
+	int comparacao;
 	
-	for(laco = 1; laco <= 10; laco++)
+	setlocale(LC_ALL, "portuguese");
+	
+	printf("\n ### Cartório da EBAC ###\n\n");
+	printf(" Login de Administrador!\n\n Digite a sua senha:");
+	scanf("%s",senhadigitada);
+	
+	comparacao = strcmp(senhadigitada, "admin");
+	
+	if(comparacao == 0)
 	{
-	
 		system("cls");
+		for(laco=1;laco=1;)
+		{
 	
-		setlocale(LC_ALL, "portuguese"); 		//Definindo linguagem
+			setlocale(LC_ALL, "portuguese"); 		//Definindo linguagem
+			system("cls");
 	
-		printf("\n ### Cartório da EBAC ###\n\n");//inicio do menu
-		printf("Escolha a opção desejada do menu:\n\n");
-		printf("\t1 - Registrar nomes\n");
-		printf("\t2 - Consultar nomes\n");
-		printf("\t3 - Excluir nomes\n\n");
-		printf("\t4 - Sair do sistema\n\n");
-		printf("\n\n Opção:  "); 				//fim do menu
+			printf("\n ### Cartório da EBAC ###\n\n");//inicio do menu
+			printf("Escolha a opção desejada do menu:\n\n");
+			printf("\t1 - Registrar nomes\n");
+			printf("\t2 - Consultar nomes\n");
+			printf("\t3 - Excluir nomes\n\n");
+			printf("\t4 - Sair do sistema\n\n");
+			printf("\n\n Opção:  "); 				//fim do menu
 	
-		scanf("%d", &opcao); 					//armazenando a escolha do usuario
+			scanf("%d", &opcao); 					//armazenando a escolha do usuario
 	
-		system("cls");
+			system("cls");
 	
-	 	switch(opcao)							//definindo os parametros e as opções do menu
-	 	{
-	 		case 1:
-	 		registro();
-			break;
+		 	switch(opcao)							//definindo os parametros e as opções do menu
+	 		{
+	 			case 1:
+	 			registro();
+				break;
 			
-			case 2:
-	 		consulta();
-			break;
+				case 2:
+	 			consulta();
+				break;
 			
-			case 3:
-	 		deletar();
-			break;
+				case 3:
+		 		deletar();
+				break;
 			
-			case 4:
-			printf("\nObrigado por utilizar o sistema!\n");//mensagem ao sair do sistema
-			return 0;
-			break;
+				case 4:
+				printf("\nObrigado por utilizar o sistema!\n");//mensagem ao sair do sistema
+				return 0;
+				break;
 			
-			default:
-	 		printf("Você escolheu uma opção invalida, por favor escolha uma opção do menu.\n");//mensagem exibida ao usuário, caso escolha uma opção invalida
-			system("pause");
-			break;	
+				default:
+	 			printf("Você escolheu uma opção invalida, por favor escolha uma opção do menu.\n");//mensagem exibida ao usuário, caso escolha uma opção invalida
+				system("pause");
+				break;	
+			}
 		}
 	}
- }
+ 	else
+ 		printf("Senha incorreta!");
+}
